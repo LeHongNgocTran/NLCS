@@ -1,0 +1,86 @@
+
+.signIn{
+    height: 50vh;
+    margin-bottom: 100px;
+    /* border:1px solid; */
+}
+
+.signIn h1,.signUp h1{
+    font-size: 30px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+}
+
+.form__signin{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.form__signin .input{
+    margin-bottom: 15px;
+}
+.form__row--input{
+    font-size: 14pt;
+    border:1px solid gray;
+    height: 40px;
+    outline: none;
+    display: block;
+    line-height: 14pt*2;
+    font-family: 'Fjalla One';
+    min-width: 350px;
+}
+.form__row--input:focus{
+    background-color: #e0d1d1;
+}
+
+.form__row--submit{
+    display: block;
+    width:100%;
+    padding: 0px 30px;
+    height: 40px;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-weight: bolder;
+    margin:40px auto 10px;
+    transition: .2s all ease-in-out;
+    outline: none;
+    color: white;
+    border: 1px solid rgba(0,0,0,1);
+    background-color:black;
+    margin-bottom:20px;
+
+}
+.form__row--submit:hover{
+    color:white;
+    background-color:black;
+    box-shadow: 3px 3px 3px 0px #666666, 3px 3px 3px 2px rgb(250, 248, 248);
+    border: 1px solid black
+}
+
+.form__row--sign {
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+}
+.form__row--sign a{
+    text-decoration: none;
+    color:black;
+}
+.form__row--sign a:hover{
+    color: gray;
+}
+.annouce{
+    color: red;
+}
+.name_login{
+    letter-spacing:2px;
+    font-size:13px;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus{
+  -webkit-text-fill-color: #303031;
+  -webkit-box-shadow: 0 0 0px 1000px  #b1b1b0 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}

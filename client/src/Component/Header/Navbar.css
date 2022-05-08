@@ -1,0 +1,132 @@
+.header__nav{
+  border-bottom: 1px solid #e7e7e7;
+  background-color: white;
+  position: sticky;
+  top:0;
+  z-index: 1000;
+}
+
+.content__header{
+  color: black;
+}
+.header__nav h1{
+  font-size:40px;
+}
+.content__header a{
+  color: rgb(63, 62, 62);
+  text-transform: uppercase;
+  padding: 15px;
+  text-decoration: none;
+}
+.header__nav a:hover{
+  color: black;
+  font-weight:700;
+}
+/* menu thanh bar */
+.navbar{
+  display:flex;
+  width: 100%;
+  justify-content: space-between;
+  text-align: left;
+  color: black
+}
+
+.navbar-brand a{
+  font-family: 'Libre Baskerville', serif;
+  font-weight: bolder;
+}
+.navbar a {
+  overflow: hidden;
+  font-family: 'Oswald', sans-serif;
+  font-weight: bold;
+  font-size: 17px;
+  -webkit-transition: all .3s linear;
+  -moz-transition: all .3s linear;
+  transition: all .3s linear;
+  position: relative;
+}
+.navbar a:hover{
+  color: gray;
+  transition: 0.25s ease-in;
+} 
+.navbar a:before, .navbar a:after{
+  content: '';
+  background: #000000;
+  position: absolute;
+  width: 0;
+  height: 2px;
+  -webkit-transition: all .3s linear;
+  -moz-transition: all .3s linear;
+  transition: all .3s linear;
+}
+.navbar a:before{
+  top: 0;
+  left: 0;
+}
+
+.navbar a:after{
+  top: 100%;
+  right: 0;
+}
+
+
+.navbar a:hover:before, .navbara:hover:after{
+  width: 100%;
+}
+.search-form{
+  /* right:200px; */
+  top:200px;
+}
+.find{
+  text-align:right;
+  margin-top: 20px;
+} 
+.search-field {
+	background-color: white;
+	background-image: url(https://wp-themes.com/wp-content/themes/twentythirteen/images/search-icon.png);
+	background-position: 5px  center;
+	background-repeat: no-repeat;
+	background-size: 24px 24px;
+	border: none;
+	cursor: pointer;
+	height: 40px;
+	margin: 3px 0;
+	padding: 0 0 0 34px;
+	position: relative;
+	transition:         width 400ms ease, background 400ms ease;
+	width:0px;
+  cursor: pointer;
+}
+
+.search-field:focus {
+	background-color: white;
+	border: 2px solid #c3c0ab;
+	cursor: text;
+	outline: 0;
+	width: 100%;
+}
+.search-form
+.search-submit { 
+  display:none;
+}
+
+.signin{
+  border-bottom: 1px solid #e7e7e7;
+  padding: 0;
+  margin: 0;
+}
+.signin a{
+  color: rgb(48, 46, 46) !important;
+}
+.signin a:hover{
+  color:rgb(176, 171, 171) !important;
+}
+@media only screen and (max-width:500px){
+
+  .signin{
+    display: none;
+  }
+  .search-field{
+    margin-top:-30px;
+  }
+}

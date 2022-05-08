@@ -1,0 +1,98 @@
+
+.comment{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    font-family: 'Manrope', sans-serif;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 20px;
+    width: 450px;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border-radius: 6px;
+    -moz-box-shadow: 0px 0px 5px 0px rgb(0, 0, 0)
+}
+
+.comment-box {
+    padding: 5px
+}
+
+.comment-area textarea {
+    resize: none;
+    border: 1px solid;
+}
+
+.form-control:focus {
+    color: #000000;
+    background-color: #fff;
+    border-color: #ffffff;
+    outline: 0;
+    box-shadow: 0 0 0 1px rgb(0, 0, 0) !important
+}
+
+.send {
+    color: #fff;
+    background-color: #000000;
+    border-color: #000000
+}
+
+.send:hover {
+    color: #fff;
+    background-color: #000000;
+    border-color: #000000
+}
+
+.rating {
+    display: flex;
+    margin-top: -10px;
+    flex-direction: row-reverse;
+    margin-left: -4px;
+    float: left
+}
+
+.rating>input {
+    display: none
+}
+
+.rating>label {
+    position: relative;
+    width: 19px;
+    font-size: 25px;
+    color: #ef4902;
+    cursor: pointer;
+}
+
+.rating>label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0
+}
+
+.rating>label:hover:before,
+.rating>label:hover~label:before {
+    opacity: 1 !important
+}
+
+.rating>input:checked~label:before {
+    opacity: 1
+}
+
+.rating:hover>input:checked~label:before {
+    opacity: 0.4
+}
+.comment button{
+    background: black;
+    color: white;
+    text-align: center;
+    padding: 4px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: none;
+}

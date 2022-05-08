@@ -1,0 +1,16 @@
+.mainadmin .list-group{
+    border-radius: 0px !important;
+}
+.mainadmin .list-group .list-group-item{
+    border: none !important;
+    /* padding: 30px; */
+    cursor: pointer;
+}
+.mainadmin .list-group .list-group-item h5{
+    padding: 20px;
+}
+.mainadmin .list-group .list-group-item h5:hover{
+    background-color: rgb(70, 196, 246);
+    color: black;
+    border-radius: 5px;
+}

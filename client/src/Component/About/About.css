@@ -1,0 +1,22 @@
+.about{
+    font-family: 'Oswald', sans-serif;
+}
+.bosuutap_images img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.logan{
+  margin-top: 50%;
+  margin-bottom: 50%;
+}
+.name{
+    background-color: black;
+}
+.block_image img{
+    margin-left: 50%;
+    
+}
+.img-3,.img-2{
+    margin-top: 80px
+}

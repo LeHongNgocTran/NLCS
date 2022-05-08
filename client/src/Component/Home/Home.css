@@ -1,0 +1,45 @@
+.home h3{
+    font-family: "Helvetica Neue",Helvetica,
+}
+.home__row--second{
+    display:block;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 80vh;
+    margin-bottom: 100px;
+}
+.home__row--second h4 a{
+    text-decoration: none;
+    font-size:30px;
+    font-weight: bold;
+    letter-spacing:3px;
+    color: white;
+}
+.home__row--second h4 a:hover{
+    color: black;
+}
+.home__row--third img{
+    width:70%;
+}
+.home__row--last{
+    background-size: 250%;
+}
+.home__row--last img{
+    height:50vh;
+    width:40%;
+}
+.home__row--last .col-last a{
+    background-color: black;
+    color:white;
+    border: 1px solid; 
+}
+.home__row--last .col-last a:hover{
+    color: black;
+    background-color:white;
+}
+.slider{
+    margin-bottom: 100px;
+}
+.slider .detail__product:hover{
+    filter: opacity(90%);
+}

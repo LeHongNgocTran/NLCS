@@ -1,0 +1,74 @@
+.tensp{
+    background-color: rgb(240, 240, 240);
+    margin-bottom:40px;
+    
+}
+.chitietsanpham{
+    font-family: 'Oswald', sans-serif;
+    color:rgb(119, 117, 117);
+}
+/* Hình ảnh */
+.content {
+    overflow: hidden;
+    height: 500px
+}
+.details__zoomin img{
+    -webkit-transition: all 2s ease;
+    -moz-transition: all 2s ease;
+    -ms-transition: all 2s ease;
+    transition: all 2s ease;
+    width: 100%;
+    height: 100%
+}
+.details__zoomin img:hover{
+    transform: scale(1.5);
+}
+.details__right .option select{
+    width:50%;
+}
+.details__right .option p, .quantity p{
+    font-size:20px;
+    color:rgb(119, 117, 117);
+    margin-top:5px;
+}
+
+.details__right button{
+    width: 50%;
+    background-color:black;
+    color: white;
+    font-size:20px;
+    letter-spacing:2px;
+    text-transform: uppercase; 
+    border: 1px solid black;
+    padding: 20px;
+    font-weight: bold;
+}
+.details__right button:hover{
+    background-color:white;
+    color: rgb(54, 52, 52);
+}
+.details__right  .text1{
+    font-family: 'Courier New', Courier, monospace;
+    color:rgb(119, 117, 117);
+    font-weight: 600;
+    letter-spacing:1px;
+    width: 80%;
+}
+.details__right h4{
+    font-size:30px;
+    text-transform: uppercase ;
+}
+.detail__product--child{
+    width: 70%;
+    margin: auto;
+    border: 1px solid #bebebe;
+    cursor: pointer;
+}   
+.detail__product--child:hover{
+    transition: 0.25s ease-in-out;
+}
+.detail__product img{
+    display: block;
+    height: 290px;
+    margin: auto;
+}

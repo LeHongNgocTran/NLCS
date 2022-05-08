@@ -1,0 +1,132 @@
+.chitietgiohang h3{
+    background-color: #eeeeee;
+    margin-bottom: 40px;
+}
+.chitietgiohang__noidung table{
+    width: 100%;
+}
+.chitietgiohang__noidung img{
+    width:90%;
+    height: 200px
+}
+.noidung__chitiet h6{
+    color: orangered;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+.noidung__chitiet--gia{
+    color: gray;
+    font-size:20px;
+    font-weight: 500;
+}
+.noidung__chitiet .option{
+    margin-right: 100px;
+}
+.chitietgiohang__noidung .noidung__chitiet .option{
+    width: 100%;
+}
+.chitietgiohang__noidung input[type='number'],.chitietgiohang__noidung .option select{
+    width: 100px;
+    height:40px;
+}
+
+.delete__chitiet h6{
+    color: orangered;
+    font-size: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.delete__chitiet .heart{
+    background-color:white;
+    border: 1px solid black;
+    padding: 4px;
+    margin-bottom:20px;
+    width: 110px;
+}
+.delete__chitiet .trash{
+    background-color: black;
+    border: 1px solid black;
+    padding: 4px;
+    width: 110px
+}
+
+.chitietgiohang__noidung--main{
+    margin-bottom: 100px
+}
+.donhang{
+    background-color: #f1f1f1;
+    height: 500px;
+    position: sticky;
+    z-index:999;
+    top:200px;
+}
+.donhang h4{
+    border-bottom: 1px solid;
+    font-weight: bolder;
+    margin-bottom:20px;
+    padding-bottom: 4px;
+}
+.donhang h6{
+    font-weight:bolder
+}
+
+.donhang .khuyenmai input{
+    height: 41px;
+    width:80%;
+}
+
+.donhang .khuyenmai p{
+    background-color:orangered;
+    color: white;
+    font-weight:400;
+    padding:9px 6px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-left:-1px;
+    width: 20%;
+    text-align:center;
+    font-size: 90%;
+}
+.donhang button {
+    padding: 10px;
+    background-color: orangered;
+    color: white;
+    font-weight: 500;
+    font-size:30px;
+    border: none;
+    margin-bottom:40px;
+    width: 100%;
+}
+.chitietgiohang__noidung--button button{
+    background-color:black;
+    color: white;
+    text-transform: uppercase;
+    padding: 10px;
+    border: none;
+    width: 100px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid;
+}
+.chitietgiohang__noidung--button button:hover{
+    filter: opacity(90%);
+}
+.delete__chitiet--button .trash:hover{
+    filter: opacity(90%);
+}
+.donhang button:hover{
+    filter: opacity(90%)
+}
+.thanhtoan .btn.btn-primary:hover{
+    background-color:white !important;
+    color: black !important;
+    border:  1px solid;
+}
+@media screen and (max-width: 768px){
+    .delete__chitiet{
+        display: flex;
+    }
+    .delete__chitiet--button{
+        align-items: flex-end;
+    }
+}

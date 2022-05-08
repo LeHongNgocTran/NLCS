@@ -1,0 +1,16 @@
+export const SET_ALL_PRODUCTS = "set_all_products"
+export const SET_ONE_PAGE_PRODUCT = "set_one_page_product"
+export const SET_NUMBER_PAGE_PRODUCT = "set_number_page_product"
+export const SET_TYPE_PRODUCT = "set_type_product"
+export const SET_ALL_TYPE_PRODUCT = "set_all_type_product"
+export const SET_PASSWORD = "set_password"
+export const SET_EMAIL = "set_email"
+export const SET_USER_LOGIN = "set_user_login"
+export const SET_STATUS_LOGIN = "set_status_login"
+export const GET_CARTS = "get_carts";
+export const SET_USER_NAME = "set_user_name";
+export const SET_UPDATE_CART = "set_update_cart";
+export const SET_DELETE_CART = "set_delete_cart";
+export const SET_UPDATE_LIST_PRODUCT = 'set_update_list_product';
+export const SET_LIST_USER = "set_list_user";
+export const SET_CART = "set_cart";

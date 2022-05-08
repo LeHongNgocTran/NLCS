@@ -1,0 +1,27 @@
+.cot1{
+    height: 90vh;
+    background-color: #212529;
+    position: sticky;
+    z-index: 999;
+    top: 150px;
+}
+.cot2{
+    background-color:rgb(251, 251, 251)
+}
+.cot2 .btn{
+    margin-right:10px;
+}
+.cot2 .table tr td{
+    padding: 45px 0px;
+    margin: auto;
+}
+.cot2 .table{
+    width: 98%;
+}
+.cot2 .table tr td img{
+    /* display: block; */
+    overflow: hidden;
+    padding: 0px;
+    margin:0px;
+    width :50%;
+}

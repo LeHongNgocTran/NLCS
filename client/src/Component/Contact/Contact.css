@@ -1,0 +1,82 @@
+/* thông tin liên hệ ở đầu trang */
+/* .infor-contact{
+    background-color: #eeeeee;
+    padding: 80px ;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-family:'Oswald', sans-serif;
+}  */
+/* thong tin lien he */
+.infor-contact p:first-child{
+    float: left;
+    margin-top: -15px;
+    margin-left: 20px;
+}
+/* thong tin lien he home */
+.infor-contact p:first-child a{
+    text-decoration: none;
+    color: rgb(134, 132, 132);
+}
+.infor-contact p:first-child a:hover{
+    color: black
+}
+/* lien he */
+.infor-contact p:nth-child(2){
+    float: right;
+    margin-top: -15px;
+    margin-right: 20px;
+    font-weight: 600;
+    font-family: 'Courier New', Courier, monospace;
+}
+/* Địa chỉ liên hệ */
+.conntact-address p{
+    background-color:#f6f6f6;
+    color: rgb(134, 132, 132);
+    padding: 40px 0px 40px 10px
+}
+.main_map{
+    display: block;
+    margin-bottom: 30px;
+}
+.contact-us{
+    margin-bottom: 20px;
+}
+.contact-us p{
+    text-transform: uppercase;
+    font-family:'Oswald', sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+}
+.contact-us .infor{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.contact-us .infor input{
+    flex-basis: 30%;
+    height:40px;
+    outline: none;
+    border: 1px solid  rgb(134, 132, 132)
+}
+.contact-us textarea{
+    width: 100%;
+    height: 20vh;
+    resize: none;
+    margin-bottom: 10px;
+    outline: none;
+}
+.contact-us button{
+    border:2px solid black;
+    padding: 10px 40px;
+    text-transform: uppercase;
+    color:black;
+    background-color:white;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+.contact-us button:hover{
+    background-color: black;
+    color: white
+}
+
