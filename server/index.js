@@ -14,23 +14,23 @@ const connection = mysql.createConnection({
 connection.connect(function (err) {
   err ? console.log(err) : console.log(connection);
 });
-
+// Lấy API của sản phẩm
 app.get("/api/sanpham", (req, res) => {
   var sql = "SELECT * FROM sanpham";
   connection.query(sql, function (err, results) {
-    if (err) throw err;
+    if (err) console.log(err) ;
     res.json({ allProduct: results });
   });
 });
-
+// Lấy api của loại sản phẩm
 app.get("/api/loaisanpham", (req, res) => {
   var sql = "SELECT * FROM loaisanpham";
   connection.query(sql, function (err, results) {
-    if (err) throw err;
+    if (err) console.log(err);
     res.json({ typeProduct: results });
   });
 });
-
+//Chèn dữ liệu người dùng vào API
 app.post("/api/nguoidung", (req, res) => {
   Username = req.body.Username;
   Email = req.body.Email;
@@ -74,14 +74,18 @@ app.post("/api/nguoidung", (req, res) => {
   );
 });
 
-app.get("/api/giohang",(res,req) => {
-    maKH: req.body.maKH;
-    connection.query("SELECT * FROM GIOHANG WHERE ma_nguoi_dung = ?",[maKH],
+// Lấy ra mã giỏ hàng
+app.post("/api/giohang", (res, req) => {
+  maKH = req.body.maKH;
+  connection.query(
+    "SELECT * FROM GIOHANG WHERE ma_nguoi_dung = ?",
+    [maKH],
     function (err, result) {
-      res.json({cart: result})
-    })
-})
-
+      res.json({ cart: result });
+    }
+  );
+});
+// Kiểm tra tài khoản và mật khẩu
 app.post("/api/login", (req, res) => {
   Email = req.body.Email;
   Password = req.body.Password;
@@ -100,7 +104,7 @@ app.post("/api/login", (req, res) => {
     }
   );
 });
-
+// Thêm vào giỏ hàng
 app.post("/api/addgiohang", (req, res) => {
   maSP = req.body.maSP;
   maKH = req.body.maKH;
@@ -143,7 +147,7 @@ app.post("/api/addgiohang", (req, res) => {
     }
   );
 });
-
+// Lấy api của chi tiết giở hàng
 app.post("/api/getCart", (req, res) => {
   maKH = req.body.maKH;
   connection.query(
@@ -157,7 +161,7 @@ app.post("/api/getCart", (req, res) => {
     }
   );
 });
-
+// Xóa sản phẩm
 app.post("/api/deleteProduct", (req, res) => {
   maSP = req.body.maSP;
   maGH = req.body.maGH;
@@ -166,21 +170,46 @@ app.post("/api/deleteProduct", (req, res) => {
     [maSP, maGH]
   );
 });
-
+// Chèn dữ liệu vào bảng hóa đơn
 app.post("/api/hoadon", (req, res) => {
   maKH = req.body.maKH;
   maGH = req.body.maGH;
   total = req.body.total;
   diachinguoidung = req.body.diachinguoidung;
+  soluong = req.body.soluong;
   connection.query(
-    "insert into hoadon(ma_gio_hang,ma_nguoi_dung,tong_tien,diachigiaohang)values(?,?,?,?)",
-    [maKH, maGH, total, diachinguoidung],
-    function (err, result) {
+    "insert into hoadon(ma_gio_hang,ma_nguoi_dung,ngaydathang,tong_tien,diachigiaohang)values(?,?,now(),?,?)",
+    [maGH, maKH, total, diachinguoidung],
+    function (err, results) {
       if (err) console.log(err);
+      else {
+        let maHD = results.insertId;
+        connection.query(
+          "select * from chitietgiohang where ma_gio_hang = ?",
+          [maGH],
+          function (err, result) {
+            if (err) console.log(err);
+            else {
+              result.forEach((event) => {
+                connection.query("insert into chitiethoadon values (?,?,?)", [
+                  maHD,
+                  event.ma_sp,
+                  event.soluong,
+                ]);
+                connection.query(
+                  "delete from chitietgiohang where ma_sp = ? and ma_gio_hang = ?",
+                  [event.ma_sp, maGH]
+                );
+              });
+            }
+          }
+        );
+      }
     }
   );
 });
-app.post("/api/deleteproductadmin", (req, res) => {
+// Xóa sản phẩm trong Admin
+app.post("/api/deleteProductAdmin", (req, res) => {
   maSP = req.body.maSP;
   connection.query(
     "delete from sanpham where ma_sp = ?",
@@ -190,6 +219,7 @@ app.post("/api/deleteproductadmin", (req, res) => {
     }
   );
 });
+// Thêm sản phẩm ở Admin
 app.post("/api/addProduct", (req, res) => {
   maSP = req.body.maSP;
   maLSP = req.body.maLSP;
@@ -203,29 +233,75 @@ app.post("/api/addProduct", (req, res) => {
     "insert into sanpham(ma_sp,ten_sp,gia_sp,image,chatlieu,malsp,mausac,kichthuoc) values(?,?,?,?,?,?,?,?)",
     [maSP, tenSP, giaSP, image, chatlieu, maLSP, mausac, kichthuoc],
     function (err, results) {
-      if (err) res.send({message: err})
-      else res.send({message: 'success'})
+      if (err) res.send({ message: err });
+      else res.send({ message: "success" });
+    }
+  );
+});
+// Danh sách người dùng
+app.get("/api/listUser", (req, res) => {
+  var sql = "SELECT * FROM nguoidung where ma_nguoi_dung > 1";
+  connection.query(sql, function (err, results) {
+    if (err) console.log(err);
+    else res.json({ listUser: results });
+  });
+});
+// Tìm sản phẩm
+app.post("/api/searchProduct", (req, res) => {
+  tenSP = req.body.tenSP;
+  connection.query(
+    "SELECT * FROM SANPHAM WHERE ten_sp like ? ",
+    ["%" + tenSP + "%"],
+    function (err, results) {
+      if (err) console.log(err);
+      else {
+        res.json({ searchProduct: results });
+      }
+    }
+  );
+});
+// Chỉnh sửa sản phẩm
+app.post("/api/editProduct", (req, res) => {
+  tenSP = req.body.tenSP;
+  giaSP = parseInt(req.body.giaSP);
+  image = req.body.image;
+  chatlieu = req.body.chatlieu;
+  maLSP = req.body.maLSP;
+  mausac = req.body.mausac;
+  kichthuoc = req.body.kichthuoc;
+  maSP = req.body.maSP;
+  connection.query(
+    "UPDATE sanpham SET ten_sp=?,gia_sp=?,image=?,chatlieu=?,malsp=?,mausac=?,kichthuoc=? WHERE ma_sp=?",
+    [tenSP, giaSP, image, chatlieu, maLSP, mausac, kichthuoc, maSP],
+    function (err) {
+      console.log(err);
     }
   );
 });
 
-app.get("/api/listUser", (req, res) => {
-  var sql = "SELECT * FROM nguoidung where ma_nguoi_dung > 1";
-  connection.query(sql, function (err, results) {
-    if (err) throw err;
-    res.json({ listUser: results });
-  });
+app.get("/api/Bill",(req,res) => {
+  // maKH = req.body.maKH;
+  connection.query(
+    "SELECT  h.ma_hoa_don,n.hoten_nguoi_dung,n.sdt_nd,h.ngaydathang,h.tong_tien,h.diachigiaohang,n.email,n.username,n.ma_nguoi_dung FROM HOADON H JOIN NGUOIDUNG N ON H.MA_NGUOI_DUNG = N.MA_NGUOI_DUNG",
+    function(err, results){
+      if (err) console.log(err);
+      else 
+        res.json({listBill: results})
+    }
+  );
 });
 
-app.post("/api/searchProduct", (req,res) => {
-  tenSP : req.body.tenSP;
-  var sql = "SELECT * FROM SANPHAM WHERE ten_san_pham like '%?%'";
-  connection.query(sql,[tenSP],
-    function(err, results) {
+app.post("/api/detailsBill",(req, res) => {
+  maHD = req.body.maHD;
+  connection.query(
+    "SELECT * FROM HOADON H JOIN chitiethoadon c ON h.ma_hoa_don = c.ma_hoa_don join sanpham s on s.ma_sp = c.ma_sp where h.ma_hoa_don = ? ",
+    [maHD],
+    function (err, results) {
       if (err) console.log(err);
-      // else (
-        
-      // )
-    })
-})
+      else {
+        res.json({detailBill : results})
+      }
+    }
+  )
+});
 app.listen(3001, () => console.log("App listening on port 3001"));

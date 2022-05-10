@@ -26,12 +26,13 @@ function SignIn() {
       })
       .then((res) => {
         if (res.data.message) {
-          // console.log(res.data.message)
           dispatch(actions.setStatusLogin(res.data.message));
         } else {
-          // console.log(res.data[0]);
           dispatch(actions.setStatusLogin("success"));
           dispatch(actions.setUserLogin(res.data[0]));
+          axios.post("http://localhost:3001/api/giohang", {
+            maKH: state.userLogin.ma_nguoi_dung,
+          });
           if (res.data[0].ma_nguoi_dung == 1) {
             navigate("/AdminProduct", { replace: true });
           } else {
@@ -61,12 +62,6 @@ function SignIn() {
     }
     return error;
   };
-
-  useEffect(() => {
-    axios.get("http://localhost:3001/api/giohang", {
-      maKH : state.userLogin.ma_nguoi_dung
-    });
-  });
 
   return (
     <div className="signIn">

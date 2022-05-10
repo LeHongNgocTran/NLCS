@@ -19,6 +19,36 @@ function Cart() {
   const [state, dispatch] = useStore();
   const [sum, setSum] = useState(0);
   let navigate = useNavigate();
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [address, setAddress] = useState("");
+
+  const handleSubmit = () => {
+    if (state.statusLogin) {
+      if (address === "") {
+        alert("Vui lòng nhập địa chỉ");
+      } else {
+        axios
+          .post("http://localhost:3001/api/hoadon", {
+            maKH: state.userLogin.ma_nguoi_dung,
+            maGH: state.carts[0].ma_gio_hang,
+            total: sum,
+            diachinguoidung: address,
+          })
+          .then(
+            handleClose(),
+            setSum(0),
+            dispatch(actions.setUpdateCart()),
+            alert("Cám ơn quý khách đã mua hàng")
+          );
+      }
+    } else {
+      alert("Bạn cần phải đăng nhập");
+      navigate("/SignIn");
+    }
+  };
+  // console.log("re-render");
   useLayoutEffect(() => {
     axios
       .post("http://localhost:3001/api/getCart", {
@@ -31,28 +61,9 @@ function Cart() {
           setSum((prev) => prev + cart.gia_sp * cart.soluong);
         });
       });
+      console.log("re-rende1r");
   }, [state.updateCart]);
 
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const [address, setAddress] = useState("");
-  
-  const handleSubmit = () => {
-    if (state.statusLogin) {
-      axios
-        .post("http://localhost:3001/api/hoadon", {
-          maKH: state.userLogin.ma_nguoi_dung,
-          maGH: state.cart.ma_gio_hang,
-          state: sum,
-          diachi: address,
-        })
-        .then(handleClose());
-    } else {
-      alert("Bạn cần phải đăng nhập");
-      navigate("/SignIn");
-    }
-  };
   return (
     <div fluid className="chitietgiohang">
       <h3 className="text-center py-3 ">GIỎ HÀNG CỦA TÔI</h3>
@@ -110,8 +121,8 @@ function Cart() {
                               maGH: product.ma_gio_hang,
                             }
                           );
-
                           dispatch(actions.setUpdateCart());
+                         
                         }}
                       >
                         <FontAwesomeIcon
@@ -134,7 +145,7 @@ function Cart() {
               </button>
             </div>
           </Col>
-          <Col lg={4} sm={12} xs={12} className="donhang">
+          <Col lg={4} sm={12} xs={12} className="donhang mb-5">
             <h4 className="text-uppercase">Đơn hàng</h4>
             <h6>NHẬP MÃ KHUYẾN MÃI</h6>
             <div className="khuyenmai d-flex flex-row w-100 my-3">

@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 import axios from "axios";
 import { ListGroup,Container} from "react-bootstrap";
-import "./chooseMainitem.css";
+import "./ProductCss/chooseMainitem.css";
 import {useStore, actions} from "../../Store"
 function ChooseMainitem(){
   const [state, dispatch] = useStore();

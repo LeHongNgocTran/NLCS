@@ -10,7 +10,7 @@ import {
   faBagShopping,
   faHeart,
 } from "@fortawesome/free-solid-svg-icons";
-import "./DetailsProduct.css";
+import "./ProductCss/DetailsProduct.css";
 import Slider from "react-slick";
 import { actions, useStore } from "../../Store";
 function DetailsProduct() {

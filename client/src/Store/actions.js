@@ -14,7 +14,12 @@ import {
   SET_DELETE_CART,
   SET_UPDATE_LIST_PRODUCT,
   SET_LIST_USER,
-  SET_CART
+  SET_CART,
+  SET_SEARCH,
+  GET_DETAILS_PRODUCT,
+  SET_LIST_BILL,
+  GET_DETAILS_BILL,
+  GET_DETAIL_BILL
 } from "./constants";
 
 export const setAllProducts = (payload) => ({
@@ -79,5 +84,25 @@ export const setListUser = (payload) => ({
 })
 export const setCart = (payload) => ({
   type: SET_CART,
+  payload
+})
+export const setSearch = (payload) => ({
+  type: SET_SEARCH,
+  payload
+})
+export const getDetailsProduct = (payload) => ({
+  type: GET_DETAILS_PRODUCT,
+  payload
+})
+export const setListBill = (payload) => ({
+  type: SET_LIST_BILL,
+  payload
+})
+export const getDetailsBill = (payload) => ({
+  type: GET_DETAILS_BILL,
+  payload
+})
+export const getDetailBill = (payload) => ({
+  type: GET_DETAIL_BILL,
   payload
 })

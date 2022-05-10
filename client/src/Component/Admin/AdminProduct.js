@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Container, Row, Col, Button, Table, Modal } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,17 +12,21 @@ import {
   faSquarePen,
 } from "@fortawesome/free-solid-svg-icons";
 import MainAdmin from "./MainAdmin";
-import "./AdminProduct.css";
+import "./AdminCss/AdminProduct.css";
 import { useStore, actions } from "../../Store";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
 function AdminProduct() {
   let navigate = useNavigate();
   const [state, dispatch] = useStore();
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   useEffect(() => {
     axios
       .get("/api/sanpham")
-      .then((result) => 
+      .then((result) =>
         dispatch(actions.setAllProducts(result.data.allProduct))
       );
   });
@@ -100,7 +104,7 @@ function AdminProduct() {
                         onClick={() => {
                           axios
                             .post(
-                              "http://localhost:3001/api/deleteproductadmin",
+                              "http://localhost:3001/api/deleteProductAdmin",
                               {
                                 maSP: product.ma_sp,
                               }
@@ -111,7 +115,14 @@ function AdminProduct() {
                       >
                         <FontAwesomeIcon icon={faTrash} color="white" />
                       </Button>
-                      <Button variant="warning">
+                      <Button
+                        variant="warning"
+                        onClick={() => {
+                          dispatch(actions.getDetailsProduct(product));
+                          navigate("/EditProduct")
+                          // console.log(product);
+                        }}
+                      >
                         <FontAwesomeIcon icon={faSquarePen} color="white" />
                       </Button>
                     </td>

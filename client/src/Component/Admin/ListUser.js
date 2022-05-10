@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import MainAdmin from "./MainAdmin";
 import axios from "axios";
-import { Container, Row, Col, Button, Table, Modal } from "react-bootstrap";
+import { Container, Row, Col, Table} from "react-bootstrap";
 import {useStore, actions} from "../../Store";
 function ListUser() {
   const [state,dispatch] = useStore();
@@ -11,7 +11,7 @@ function ListUser() {
       .then((results) =>
         dispatch(actions.setListUser(results.data.listUser))
       );
-  });
+  },[]);
   return (
     <Container fluid className="adminuser mx-0 px-0 ">
       <Row className="px-0 mx-0">
@@ -43,7 +43,7 @@ function ListUser() {
                    <td>{user.gioi_tinh_nd}</td>
                    <td>{user.sdt_nd}</td>
                    <td>{user.email}</td>
-                   <td>{user.ngay_sinh_nd}</td>
+                   <td>{user.ngay_sinh_nd.replace("T17:00:00.000Z","")}</td>
                  </tr>
                 ))}
               </tbody>

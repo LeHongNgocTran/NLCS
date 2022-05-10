@@ -13,10 +13,15 @@ import Cart from "./Component/Cart/Cart";
 import AdminProduct from "./Component/Admin/AdminProduct";
 import AddProduct from "./Component/Admin/AddProduct"
 import ListUser from "./Component/Admin/ListUser";
+import SearchProduct from "./Component/Search/Search";
+import EditProduct from "./Component/Admin/EditProduct";
+import Bill from "./Component/Admin/Bill"
+import DetailsBill from "./Component/Admin/DetailsBill";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useEffect, useState} from "react";
 import {useStore, actions} from "./Store";
 import axios from "axios";
+
 function App() {
   const [showHeader, setshowHeader] = useState(false);
   const [state, dispatch] = useStore();
@@ -53,24 +58,29 @@ function App() {
         <Header showHeader={showHeader} />
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route exact path="/Product" element={<Product />} />
-          <Route exact path="/Spring2022" element={<Collection1 />} />
-          <Route
-            exact
-            path="/SignIn"
-            element={<SignIn />}
-          />
+          
           <Route exact path="/SignUp" element={<SignUp />} />
-          <Route exact path="/Contact" element={<Contact />} />
-          <Route exact path="/About" element={<About />}></Route>
+          <Route exact path="/SignIn" element={<SignIn />}/>
+          
+          <Route exact path="/Product" element={<Product />} />
+          <Route exact path="/Product/:productID" element={<DetailsProduct />}/>
           <Route exact path="/Cart" element={<Cart />}></Route>
-          <Route
-            path="/Product/:productID"
-            element={<DetailsProduct />}
-          ></Route>
-          <Route path='/AdminProduct' element={<AdminProduct/>}/>
-          <Route path="/AddProduct" element={<AddProduct />}/>
-          <Route path="/ListUser" element={<ListUser />}/>
+          
+          <Route exact path="/Spring2022" element={<Collection1 />} />
+          
+          <Route exact path="/Contact" element={<Contact />} />
+          
+          <Route exact path="/About" element={<About />}></Route>
+          {/* Admin */}
+          <Route exact path='/AdminProduct' element={<AdminProduct/>}/>
+          <Route exact path="/AddProduct" element={<AddProduct />}/>
+          <Route exact path="/ListUser" element={<ListUser />}/>
+          <Route exact path="/EditProduct" element={<EditProduct />}/>
+          <Route exact path="/Bill" element={<Bill />}/>
+          <Route exact path="/DetailsBill" element={<DetailsBill />}/>
+          {/* Search */}
+          <Route path="/Search/:searchTitle" element={<SearchProduct />}/>
+
         </Routes>
         <Footer />
       </Router>

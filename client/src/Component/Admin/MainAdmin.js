@@ -13,7 +13,7 @@ import {
   faMoneyBill1,
 } from "@fortawesome/free-regular-svg-icons";
 import { useNavigate } from "react-router-dom";
-import "./MainAdmin.css"
+import "./AdminCss/MainAdmin.css";
 import { Container, Row, Col, Accordion, ListGroup } from "react-bootstrap";
 function MainAdmin() {
   let navigate = useNavigate();
@@ -47,7 +47,9 @@ function MainAdmin() {
             </h5>
           </ListGroup.Item>
           <ListGroup.Item className='bg-dark text-white'>
-            <h5>
+            <h5 onClick ={() => {
+              navigate("/Bill")
+            }}>
               <FontAwesomeIcon icon={faCalendarCheck} /> &nbsp;Quản lý đơn hàng
             </h5>
           </ListGroup.Item>
