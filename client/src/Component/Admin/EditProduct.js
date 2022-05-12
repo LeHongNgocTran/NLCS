@@ -21,8 +21,7 @@ function EditProduct() {
   const onImageChange = (event) => {
     setFile(path.concat(event.target.files[0].name));
   };
-  const handleSubmit = (event) => {
-    console.log(formValues);
+  const handleSubmit = () => {
     axios.post("http://localhost:3001/api/editProduct", {
       tenSP: formValues.ten_sp,
       giaSP: formValues.gia_sp,
@@ -34,16 +33,13 @@ function EditProduct() {
       maSP: formValues.ma_sp,
     })
     alert("Cập nhật thành công");
-    navigate("/AdminProduct");
+    navigate("/Dashboard/AdminProduct");
   };
   return (
     <Container fluid className=" mx-0 px-0 ">
       <Row className="px-0 mx-0">
-        <Col lg={3} className="px-0 mx-0 cot1">
-          <MainAdmin className="my-5" />
-        </Col>
-        <Col lg={9} className="mx-0 px-0 cot2 ">
-          <h4 className="fw-bold p-3 m-3 border rounded-2 bg-white">
+        <Col lg={12} className="mx-0 px-0 cot2 ">
+          <h4 className="p-4 fw-bold p-3 m-3 border rounded-2 bg-white">
             CHỈNH SỬA THÔNG TIN SẢN PHẨM
           </h4>
           <Form>

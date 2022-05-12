@@ -3,7 +3,6 @@
 }
 .mainadmin .list-group .list-group-item{
     border: none !important;
-    /* padding: 30px; */
     cursor: pointer;
 }
 .mainadmin .list-group .list-group-item h5{
@@ -13,4 +12,9 @@
     background-color: rgb(70, 196, 246);
     color: black;
     border-radius: 5px;
+}
+.admin-log{
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }

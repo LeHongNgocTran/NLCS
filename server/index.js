@@ -18,7 +18,7 @@ connection.connect(function (err) {
 app.get("/api/sanpham", (req, res) => {
   var sql = "SELECT * FROM sanpham";
   connection.query(sql, function (err, results) {
-    if (err) console.log(err) ;
+    if (err) console.log(err);
     res.json({ allProduct: results });
   });
 });
@@ -70,18 +70,6 @@ app.post("/api/nguoidung", (req, res) => {
           }
         }
       );
-    }
-  );
-});
-
-// Lấy ra mã giỏ hàng
-app.post("/api/giohang", (res, req) => {
-  maKH = req.body.maKH;
-  connection.query(
-    "SELECT * FROM GIOHANG WHERE ma_nguoi_dung = ?",
-    [maKH],
-    function (err, result) {
-      res.json({ cart: result });
     }
   );
 });
@@ -177,9 +165,10 @@ app.post("/api/hoadon", (req, res) => {
   total = req.body.total;
   diachinguoidung = req.body.diachinguoidung;
   soluong = req.body.soluong;
+  trangthai = req.body.trangthai;
   connection.query(
-    "insert into hoadon(ma_gio_hang,ma_nguoi_dung,ngaydathang,tong_tien,diachigiaohang)values(?,?,now(),?,?)",
-    [maGH, maKH, total, diachinguoidung],
+    "insert into hoadon(ma_gio_hang,ma_nguoi_dung,ngaydathang,tong_tien,diachigiaohang,trangthai)values(?,?,now(),?,?,?)",
+    [maGH, maKH, total, diachinguoidung, trangthai],
     function (err, results) {
       if (err) console.log(err);
       else {
@@ -208,6 +197,7 @@ app.post("/api/hoadon", (req, res) => {
     }
   );
 });
+
 // Xóa sản phẩm trong Admin
 app.post("/api/deleteProductAdmin", (req, res) => {
   maSP = req.body.maSP;
@@ -279,19 +269,18 @@ app.post("/api/editProduct", (req, res) => {
   );
 });
 
-app.get("/api/Bill",(req,res) => {
+app.get("/api/Bill", (req, res) => {
   // maKH = req.body.maKH;
   connection.query(
-    "SELECT  h.ma_hoa_don,n.hoten_nguoi_dung,n.sdt_nd,h.ngaydathang,h.tong_tien,h.diachigiaohang,n.email,n.username,n.ma_nguoi_dung FROM HOADON H JOIN NGUOIDUNG N ON H.MA_NGUOI_DUNG = N.MA_NGUOI_DUNG",
-    function(err, results){
+    "SELECT  h.ma_hoa_don,n.hoten_nguoi_dung,n.sdt_nd,h.ngaydathang,h.tong_tien,h.diachigiaohang,n.email,n.username,n.ma_nguoi_dung,h.trangthai FROM HOADON H JOIN NGUOIDUNG N ON H.MA_NGUOI_DUNG = N.MA_NGUOI_DUNG",
+    function (err, results) {
       if (err) console.log(err);
-      else 
-        res.json({listBill: results})
+      else res.json({ listBill: results });
     }
   );
 });
 
-app.post("/api/detailsBill",(req, res) => {
+app.post("/api/detailsBill", (req, res) => {
   maHD = req.body.maHD;
   connection.query(
     "SELECT * FROM HOADON H JOIN chitiethoadon c ON h.ma_hoa_don = c.ma_hoa_don join sanpham s on s.ma_sp = c.ma_sp where h.ma_hoa_don = ? ",
@@ -299,9 +288,32 @@ app.post("/api/detailsBill",(req, res) => {
     function (err, results) {
       if (err) console.log(err);
       else {
-        res.json({detailBill : results})
+        res.json({ detailBill: results });
       }
     }
-  )
+  );
 });
+
+app.post("/api/setStatusBill", (req, res) => {
+  maHD = req.body.maHD;
+  connection.query(
+    "UPDATE HOADON SET trangthai='Đã xác nhận' where ma_hoa_don = ? ",
+    [maHD],
+    function (err) {
+      console.log(err);
+    }
+  );
+}); 
+
+app.post("/api/Cancelbill", (req, res) => {
+  maHD = req.body.maHD;
+  connection.query(
+    "UPDATE HOADON SET trangthai='Hủy đơn hàng' where ma_hoa_don = ? ",
+    [maHD],
+    function (err) {
+      console.log(err);
+    }
+  );
+}); 
+
 app.listen(3001, () => console.log("App listening on port 3001"));

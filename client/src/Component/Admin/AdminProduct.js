@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import { Outlet } from "react-router-dom";
 import { Container, Row, Col, Button, Table, Modal } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,7 +9,7 @@ import {
   faFileExcel,
   faCircleMinus,
   faTrash,
-  faSquarePen,
+  faPen,
 } from "@fortawesome/free-solid-svg-icons";
 import MainAdmin from "./MainAdmin";
 import "./AdminCss/AdminProduct.css";
@@ -33,18 +33,15 @@ function AdminProduct() {
   return (
     <Container fluid className="admin mx-0 px-0 ">
       <Row className="px-0 mx-0">
-        <Col lg={3} className="px-0 mx-0 cot1">
-          <MainAdmin className="my-5" />
-        </Col>
-        <Col lg={9} className="mx-0 px-0 cot2 ">
-          <h4 className="fw-bold p-3 m-3 border rounded-2 bg-white">
+        <Col lg={12} className="mx-0 px-0 cot2 ">
+          <h4 className="p-4 fw-bold p-3 m-3 border rounded-2 bg-white text-center">
             DANH SÁCH SẢN PHẨM
           </h4>
           <div className="ms-3">
             <Button
-              variant="success"
+              variant="primary"
               onClick={() => {
-                navigate("/AddProduct");
+                navigate("/Dashboard/AddProduct");
               }}
             >
               <FontAwesomeIcon icon={faPlus} /> Tạo mới sản phẩm
@@ -64,9 +61,9 @@ function AdminProduct() {
             </Button>
           </div>
           <div className="tableproduct ">
-            <Table striped bordered hover className="m-3 bg-white">
+            <Table striped hover className="m-3 bg-white">
               <thead>
-                <tr className="text-center">
+                <tr className="text-center text-uppercase">
                   <th>Mã sản phẩm</th>
                   <th>Tên sản phẩm</th>
                   <th>Ảnh</th>
@@ -77,10 +74,12 @@ function AdminProduct() {
                   <th>Chức năng</th>
                 </tr>
               </thead>
-              <tbody className="text-center">
+              <tbody className="text-center align-middle ">
                 {state.allProduct.map((product) => (
                   <tr key={product.ma_sp}>
-                    <td style={{ width: "10%" }}>{product.ma_sp}</td>
+                    <td className="fw-bold" style={{ width: "10%" }}>
+                      {product.ma_sp}
+                    </td>
                     <td style={{ width: "10%" }}>{product.ten_sp}</td>
                     <td style={{ width: "20%" }}>
                       <img src={product.image}></img>
@@ -94,13 +93,23 @@ function AdminProduct() {
                     </td>
                     <td style={{ width: "8%" }}>{product.malsp}</td>
                     <td style={{ width: "10%" }}>
-                      <p className="text-white bg-success mx-2 rounded-3 fw-bolder">
+                      <p className="text-white bg-success mt-4 mx-2 rounded-3 fw-bolder">
                         Còn hàng
                       </p>
                     </td>
                     <td style={{ width: "10%" }}>
                       <Button
-                        variant="danger"
+                        variant="warning"
+                        onClick={() => {
+                          dispatch(actions.getDetailsProduct(product));
+                          navigate("/Dashboard/EditProduct");
+                          // console.log(product);
+                        }}
+                      >
+                        <FontAwesomeIcon icon={faPen} color="white" />
+                      </Button>
+                      <Button
+                        variant="dark"
                         onClick={() => {
                           axios
                             .post(
@@ -115,16 +124,6 @@ function AdminProduct() {
                       >
                         <FontAwesomeIcon icon={faTrash} color="white" />
                       </Button>
-                      <Button
-                        variant="warning"
-                        onClick={() => {
-                          dispatch(actions.getDetailsProduct(product));
-                          navigate("/EditProduct")
-                          // console.log(product);
-                        }}
-                      >
-                        <FontAwesomeIcon icon={faSquarePen} color="white" />
-                      </Button>
                     </td>
                   </tr>
                 ))}
@@ -132,6 +131,7 @@ function AdminProduct() {
             </Table>
           </div>
         </Col>
+        <Outlet />
       </Row>
     </Container>
   );

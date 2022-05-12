@@ -70,9 +70,10 @@ function Product() {
             <div className="d-flex justify-content-center">
               <h3 className="text-uppercase text-center">Tất cả sản phẩm</h3>
             </div>
-            <ul className="product__ul">
+            <Container>
+            <Row className="product__ul">
               {state.onePageProduct.map((e) => (
-                <li key={e.ma_sp}>
+                <Col key={e.ma_sp} lg={3} className='box-product'>
                   <div className="product__top">
                     <Link to={e.ma_sp}>
                       {" "}
@@ -88,9 +89,10 @@ function Product() {
                       <FontAwesomeIcon icon={faBagShopping} />
                     </div>
                   </div>
-                </li>
+                </Col>
               ))}
-            </ul>
+            </Row>
+          </Container>
             <div className="d-flex justify-content-center">
               {!state.typeProduct && <Pagination>{items}</Pagination>}
             </div>

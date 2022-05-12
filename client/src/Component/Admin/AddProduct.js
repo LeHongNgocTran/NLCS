@@ -3,7 +3,7 @@ import { Container, Row, Col, Form, FormGroup, Button } from "react-bootstrap";
 import MainAdmin from "./MainAdmin";
 import "./AdminCss/AddProduct.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 function AddProduct() {
@@ -13,10 +13,10 @@ function AddProduct() {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
   };
-  const path = "../Images/"
+  const path = "../Images/";
   const [file, setFile] = useState(null);
-  const onImageChange = event => {
-    const fd = new FormData ();
+  const onImageChange = (event) => {
+    const fd = new FormData();
     setFile(path.concat(event.target.files[0].name));
   };
   const handleSubmit = (e) => {
@@ -33,19 +33,16 @@ function AddProduct() {
       })
       .catch((err) => {
         console.log(err);
-      })
-      alert("Thêm sản phẩm thành công");
-      navigate("/AdminProduct");
+      });
+    alert("Thêm sản phẩm thành công");
+    navigate("/Dashboard/AdminProduct");
   };
 
   return (
     <Container fluid className=" mx-0 px-0 ">
       <Row className="px-0 mx-0">
-        <Col lg={3} className="px-0 mx-0 cot1">
-          <MainAdmin className="my-5" />
-        </Col>
-        <Col lg={9} className="mx-0 px-0 cot2">
-          <h4 className="fw-bold p-3 m-3 border rounded-2 bg-white">
+        <Col lg={12} className="mx-0 px-0 cot2">
+          <h4 className="p-4 fw-bold p-3 m-3 border rounded-2 bg-white text-center">
             TẠO SẢN PHẨM MỚI
           </h4>
           <div className="ms-3 mb-5 px-0">
@@ -203,7 +200,11 @@ function AddProduct() {
               </Row>
               <Row>
                 <FormGroup className="mt-5">
-                  <Button variant="success" onClick={handleSubmit}>
+                  <Button
+                    variant="success"
+                    onClick={handleSubmit}
+                    className="ms-3"
+                  >
                     <FontAwesomeIcon icon={faPlus} />
                     &nbsp;Thêm sản phẩm
                   </Button>
@@ -211,6 +212,18 @@ function AddProduct() {
               </Row>
             </Container>
           </Form>
+          <p
+            style={{cursor:"pointer",}}
+            className="ms-3 mt-4 fs-6"
+            onClick={() => navigate("/Dashboard/AdminProduct")}
+          >
+            <FontAwesomeIcon
+              // size="2x"
+
+              icon={faArrowLeft}
+            />{" "}
+            Quay lại trang trước
+          </p>
         </Col>
       </Row>
     </Container>

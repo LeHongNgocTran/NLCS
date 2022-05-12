@@ -34,21 +34,21 @@ function MainAdmin() {
           </ListGroup.Item>
           <ListGroup.Item className='bg-dark text-white'>
             <h5 onClick ={() => {
-                navigate("/ListUser");
+                navigate("/Dashboard/ListUser");
             }}>
               <FontAwesomeIcon icon={faCircleUser} /> &nbsp;Quản lý khách hàng
             </h5>
           </ListGroup.Item>
           <ListGroup.Item className='bg-dark text-white'>
             <h5 onClick={() => {
-              navigate("/AdminProduct")
+              navigate("/Dashboard/AdminProduct")
             }}>
               <FontAwesomeIcon icon={faTag} /> &nbsp;Quản lý sản phẩm
             </h5>
           </ListGroup.Item>
           <ListGroup.Item className='bg-dark text-white'>
             <h5 onClick ={() => {
-              navigate("/Bill")
+              navigate("/Dashboard/Bill")
             }}>
               <FontAwesomeIcon icon={faCalendarCheck} /> &nbsp;Quản lý đơn hàng
             </h5>

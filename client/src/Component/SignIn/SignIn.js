@@ -30,11 +30,11 @@ function SignIn() {
         } else {
           dispatch(actions.setStatusLogin("success"));
           dispatch(actions.setUserLogin(res.data[0]));
-          axios.post("http://localhost:3001/api/giohang", {
-            maKH: state.userLogin.ma_nguoi_dung,
-          });
+          // axios.post("http://localhost:3001/api/giohang", {
+          //   maKH: state.userLogin.ma_nguoi_dung,
+          // });
           if (res.data[0].ma_nguoi_dung == 1) {
-            navigate("/AdminProduct", { replace: true });
+            navigate("/Dashboard", { replace: true });
           } else {
             navigate("/", { replace: true });
           }

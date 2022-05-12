@@ -14,7 +14,7 @@ import { faHeart, faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { actions, useStore } from "../../Store";
 import axios from "axios";
 
-import "./Cart.css";
+import "./Css/Cart.css";
 function Cart() {
   const [state, dispatch] = useStore();
   const [sum, setSum] = useState(0);
@@ -35,12 +35,14 @@ function Cart() {
             maGH: state.carts[0].ma_gio_hang,
             total: sum,
             diachinguoidung: address,
+            trangthai: "Chưa xác nhận"
           })
           .then(
             handleClose(),
             setSum(0),
             dispatch(actions.setUpdateCart()),
-            alert("Cám ơn quý khách đã mua hàng")
+            alert("Cám ơn quý khách đã mua hàng"),
+            navigate("/Product")
           );
       }
     } else {
@@ -48,7 +50,6 @@ function Cart() {
       navigate("/SignIn");
     }
   };
-  // console.log("re-render");
   useLayoutEffect(() => {
     axios
       .post("http://localhost:3001/api/getCart", {
@@ -61,7 +62,7 @@ function Cart() {
           setSum((prev) => prev + cart.gia_sp * cart.soluong);
         });
       });
-      console.log("re-rende1r");
+      // console.log("re-rende1r");
   }, [state.updateCart]);
 
   return (

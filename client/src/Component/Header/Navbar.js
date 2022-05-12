@@ -126,14 +126,13 @@ function Header({ showHeader }) {
                           <Link to="/About">Về chúng tôi</Link>
                         </Nav.Link>
                       </Nav.Item>
-                      {state.statusLogin === "success" &&
-                        state.userLogin.ma_nguoi_dung === 1 && (
-                          <Nav.Item>
-                            <Nav.Link>
-                              <Link to="/AdminProduct">Quản Lý</Link>
-                            </Nav.Link>
-                          </Nav.Item>
-                        )}
+                      {state.statusLogin === "success" && (
+                        <Nav.Item>
+                          <Nav.Link>
+                            <Link to="/BillUser">Hóa Đơn</Link>
+                          </Nav.Link>
+                        </Nav.Item>
+                      )}
                     </Nav>
                   </Navbar.Collapse>
                 </Navbar>
