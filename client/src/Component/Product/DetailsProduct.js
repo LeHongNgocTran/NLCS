@@ -1,8 +1,8 @@
-import React, { useEffect, useState, memo, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Modal, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCirclePlus,
@@ -15,6 +15,9 @@ import Slider from "react-slick";
 import { actions, useStore } from "../../Store";
 function DetailsProduct() {
   let { productID } = useParams();
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
   const [count, setCount] = useState(1);
   const [detailsproduct, setDetailsproduct] = useState({});
   const [state, dispatch] = useStore();
@@ -78,23 +81,17 @@ function DetailsProduct() {
   const handleAddProduct = () => {
     dispatch(actions.setUpdateCart());
     if (state.statusLogin) {
-      axios
-        .post("http://localhost:3001/api/addgiohang", {
-          maSP: productID,
-          maKH: state.userLogin.ma_nguoi_dung,
-          soluong: count,
-        })
-        .then((res) => {console.log(state.statusLogin);})
-        .catch((error) => {
-          console.log(error);
-        });
+      axios.post("http://localhost:3001/api/addgiohang", {
+        maSP: productID,
+        maKH: state.userLogin.ma_nguoi_dung,
+        soluong: count,
+      });
+      setShow(true);
     } else {
       alert("Vui lòng đăng nhập");
       navigate("/SignIn");
     }
   };
-  // console.log(detailsproduct);
-  // console.log(state.allProduct)
   return (
     <div className="detailsProduct">
       <div className="tensp d-flex justify-content-center">
@@ -152,6 +149,23 @@ function DetailsProduct() {
             </div>
             <div className="my-4">
               <button onClick={handleAddProduct}>THÊM VÀO GIỎ HÀNG</button>
+
+              <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+              >
+                <Modal.Header closeButton>
+                  <Modal.Title>THÔNG BÁO</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>THÊM VÀO GIỎ HÀNG THÀNH CÔNG</Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={handleClose}>
+                    Close
+                  </Button>
+                </Modal.Footer>
+              </Modal>
             </div>
             <p className="text1">
               Please be aware that the prices shown here do not include duties
@@ -206,14 +220,16 @@ function DetailsProduct() {
               (product) =>
                 product.malsp === detailsproduct.malsp && (
                   <div className="detail__product">
-                    <div key={product.ma_sp} className="detail__product--child">
+                    <div
+                      key={product.ma_sp}
+                      className="detail__product--child"
+                      onClick={() => navigate(`/Product/${product.ma_sp}`,{replace:true})}
+                    >
                       <div className="product__top d-block">
-                        <Link to={product.ma_sp}>
-                          <img
-                            src={product.image}
-                            className="product__top--img img-fluid"
-                          ></img>
-                        </Link>
+                        <img
+                          src={product.image}
+                          className="product__top--img img-fluid"
+                        ></img>
                         <p className="buy__now">BUY NOW</p>
                       </div>
                       <p className="items__name">{product.ten_sp}</p>

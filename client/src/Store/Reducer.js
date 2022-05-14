@@ -1,4 +1,4 @@
-import axios from "axios";
+
 import {
   SET_ALL_PRODUCTS,
   SET_ONE_PAGE_PRODUCT,
@@ -19,7 +19,8 @@ import {
   GET_DETAILS_PRODUCT,
   SET_LIST_BILL,
   GET_DETAILS_BILL,
-  GET_DETAIL_BILL
+  GET_DETAIL_BILL,
+  GET_DETAILS_BILL_USER
 } from "./constants";
 
 const initState = {
@@ -41,7 +42,8 @@ const initState = {
   detailsProduct:"",
   listBill:[],
   detailsBill : "",
-  detailsBills : ""
+  detailsBills : "",
+  listBillUser:""
 };
 
 function reducer(state, action) {
@@ -154,6 +156,11 @@ function reducer(state, action) {
           ...state,
           detailBill: action.payload,
         };
+      case GET_DETAILS_BILL_USER:
+        return{
+          ...state,
+          listBillUser: action.payload,
+        }
     default:
       throw new Error("Unknown action type: " + action.type);
   }

@@ -19,3 +19,4 @@ export const GET_DETAILS_PRODUCT = "get_details_product";
 export const SET_LIST_BILL = "set_list_bill";
 export const GET_DETAILS_BILL = "get_details_bill";
 export const GET_DETAIL_BILL = "get_detail_bill";
+export const GET_DETAILS_BILL_USER = "get_details_bill_user";

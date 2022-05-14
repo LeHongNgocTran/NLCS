@@ -1,26 +1,29 @@
 import "./App.css";
-import Client from "./Routes/Client";
-import Dashboard from "./Component/Admin/Dashboard"
-import Home from "./Component/Home/Home";
-import Product from "./Component/Product/Product";
 import SignIn from "./Component/SignIn/SignIn";
 import SignUp from "./Component/SignUp/SignUp";
+
+import Client from "./Routes/Client";
+import Home from "./Component/Home/Home";
+import Product from "./Component/Product/Product";
+import DetailsProduct from "./Component/Product/DetailsProduct";
 import Collection1 from "./Component/Collection/Spring2022";
 import Contact from "./Component/Contact/Contact";
 import About from "./Component/About/About";
-import DetailsProduct from "./Component/Product/DetailsProduct";
 import Cart from "./Component/Cart/Cart";
+import BillUser from "./Component/Cart/BillUser";
+import DetailBillUser from "./Component/Cart/DetailBillUser"
+import SearchProduct from "./Component/Search/Search";
+
+import Dashboard from "./Component/Admin/Dashboard"
 import AdminProduct from "./Component/Admin/AdminProduct";
 import AddProduct from "./Component/Admin/AddProduct";
 import ListUser from "./Component/Admin/ListUser";
-import SearchProduct from "./Component/Search/Search";
 import EditProduct from "./Component/Admin/EditProduct";
 import Bill from "./Component/Admin/Bill";
 import DetailsBill from "./Component/Admin/DetailsBill";
 import BillAccept from "./Component/Admin/BillAccept";
-import BillUser from "./Component/Cart/BillUser";
 import BillWait from "./Component/Admin/BillWait";
-import BillCancel from "./Component/Admin/BillCancel"
+import BillCancel from "./Component/Admin/BillCancel";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useStore, actions } from "./Store";
@@ -62,6 +65,7 @@ function App() {
             <Route path="/Contact" element={<Contact />} />
             <Route path="/About" element={<About />}></Route>
             <Route path="/Search/:searchTitle" element={<SearchProduct />} />
+            <Route path="/DetailBillUser" element={<DetailBillUser />}/>
           </Route>
           {/* Admin */}
           <Route  path="/Dashboard" element={<Dashboard />}>

@@ -19,7 +19,8 @@ import {
   GET_DETAILS_PRODUCT,
   SET_LIST_BILL,
   GET_DETAILS_BILL,
-  GET_DETAIL_BILL
+  GET_DETAIL_BILL,
+  GET_DETAILS_BILL_USER
 } from "./constants";
 
 export const setAllProducts = (payload) => ({
@@ -104,5 +105,9 @@ export const getDetailsBill = (payload) => ({
 })
 export const getDetailBill = (payload) => ({
   type: GET_DETAIL_BILL,
+  payload
+})
+export const getDetailBillUser = (payload) => ({
+  type: GET_DETAILS_BILL_USER,
   payload
 })

@@ -40,7 +40,7 @@ app.post("/api/nguoidung", (req, res) => {
   Gioitinh = req.body.Gioitinh;
   Password = req.body.Password;
   connection.query(
-    "insert into nguoidung(hoten_nguoi_dung,sdt_nd,ngay_sinh_nd,gioi_tinh_nd,email,username) values (?,?,?,?,?,?)",
+    "insert into (hoten_nguoi_dung,sdt_nd,ngay_sinh_nd,gioi_tinh_nd,email,username) values (?,?,?,?,?,?)",
     [Name, Phone, Ngaysinh, Gioitinh, Email, Username],
     function (err, results) {
       let id = results.insertId;
@@ -280,6 +280,7 @@ app.get("/api/Bill", (req, res) => {
   );
 });
 
+
 app.post("/api/detailsBill", (req, res) => {
   maHD = req.body.maHD;
   connection.query(
@@ -315,5 +316,16 @@ app.post("/api/Cancelbill", (req, res) => {
     }
   );
 }); 
+
+app.post("/api/BillUser", (req, res) => {
+  maKH = req.body.maKH;
+  connection.query(
+    "SELECT  h.ma_hoa_don,n.hoten_nguoi_dung,n.sdt_nd,h.ngaydathang,h.tong_tien,h.diachigiaohang,n.email,n.username,n.ma_nguoi_dung,h.trangthai FROM HOADON H JOIN NGUOIDUNG N ON H.MA_NGUOI_DUNG = N.MA_NGUOI_DUNG where n.ma_nguoi_dung = ?",[maKH],
+    function (err, results) {
+      if (err) console.log(err);
+      else res.json({ listBillUser: results });
+    }
+  );
+});
 
 app.listen(3001, () => console.log("App listening on port 3001"));

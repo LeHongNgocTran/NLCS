@@ -95,7 +95,8 @@
     border: 1px solid #bebebe;
 }
 .leftSide{
-    top:0px;
+    top:200px;
+    /* bottom:100px; */
     z-index: 999;
 }
 @media only screen and (max-width:1300px ) {

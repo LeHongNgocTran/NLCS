@@ -19,10 +19,10 @@ function Dashboard() {
         </Col>
         <Col lg={9} className="mx-0 px-0 cot2">
           <h1 className="text-center py-4">JENBIE</h1>
-          <div className="admin-log ">
+          <div className="admin-log">
             <Link
               to="/"
-              className=" text-decoration-none fw-bold text-dark fs-5"
+              className="text-decoration-none fw-bold text-dark fs-5"
             >
               <FontAwesomeIcon icon={faUser} />
               &nbsp;Xin chào&nbsp;{state.userLogin.username}
